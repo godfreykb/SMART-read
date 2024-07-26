@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="bookDatabase.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="favourites.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="feed.html">Feed</a></li>
+            <li><a href="search.html" class="active">Search</a></li>
+            <li><a href="favourites.html">Favourites</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1 class="page_title">Search</h1>
+        
+        <div class="search-container">
+            <h1>Search Books</h1>
+            <input type="text" id="searchInput" placeholder="Enter book name">
+            <button id="searchButton">Search</button>
+        </div>
+    
+        <div class="feed" id="searchResults">
+            <!-- Search results will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('searchButton').addEventListener('click', searchBooks);
+        });
+
+        function searchBooks() {
+            const searchInput = document.getElementById('searchInput').value;
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = ''; // Clear previous results
+
+            // Assuming book_database is an object with book details
+            const books = Object.values(book_database); 
+            const filteredBooks = books.filter(book => book.name.toLowerCase().includes(searchInput.toLowerCase()));
+
+            if (filteredBooks.length > 0) {
+                filteredBooks.forEach(book => {
+                    const bookElement = document.createElement('div');
+                    bookElement.classList.add('book-post');
+
+                    const bookTitle = document.createElement('h2');
+                    bookTitle.textContent = book.name;
+
+                    const bookAuthor = document.createElement('p');
+                    bookAuthor.textContent = `Author: ${book.author}`;
+
+                    const bookGenre = document.createElement('p');
+                    bookGenre.textContent = `Genre: ${book.genre}`;
+
+                    bookElement.appendChild(bookTitle);
+                    bookElement.appendChild(bookAuthor);
+                    bookElement.appendChild(bookGenre);
+
+                    searchResults.appendChild(bookElement);
+                });
+            } else {
+                const noResults = document.createElement('p');
+                noResults.textContent = 'No results found.';
+                searchResults.appendChild(noResults);
+            }
+        }
+    </script>
+</body>
+</html>

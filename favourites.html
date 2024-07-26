@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favourites</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="bookDatabase.js" defer></script>
+    <script src="favourites.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="feed.html">Feed</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li><a href="favourites.html" class="active">Favourites</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1 class="page_title">Favourites</h1>
+        <button id="addToFavouritesButton">Add to Favourites</button>
+        <div id="favouritesContainer" class="favourites-container">
+            <!-- Bookshelves will be dynamically generated here -->
+        </div>
+    </div>
+</body>
+</html>
